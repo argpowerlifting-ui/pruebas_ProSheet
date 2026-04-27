@@ -70,6 +70,8 @@ const PRODUCTS = [
     tagline:     'El sistema que yo mismo usaría si empezara hoy.',
     priceNum:    '39,99 €',
     pricePeriod: '/mes',
+    originalPrice: '49,99 €',
+    promoLabel:  'Precio de lanzamiento (primeros 15) · +IVA',
     priceNote:   'Precio fijo. Sin sobrecoste por número de atletas.',
     description: 'Construido sobre 130 proyectos a medida en 3 años. Sistema Pro no es una plantilla: es la destilación de toda esa experiencia en un sistema profesional accesible desde el primer día. Programación, análisis, gestión de clientes y automatización completa en Google Sheets.',
     /* ── AÑADIR IMÁGENES: incluye todas las rutas que quieras aquí.
@@ -230,8 +232,13 @@ function openModal(productId) {
     </div>
 
     <div class="modal-price-row">
-      <div class="modal-price-big">${p.priceNum}<span style="font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--muted);background:none"> ${p.pricePeriod}</span></div>
-      <div class="modal-price-note">${p.priceNote}</div>
+      ${p.originalPrice ? `<div class="modal-price-col">
+        <div class="modal-price-original">${p.originalPrice}<span style="font-size:.75rem;font-weight:400"> ${p.pricePeriod}</span></div>
+        <div class="modal-price-big">${p.priceNum}<span style="font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--muted);background:none"> ${p.pricePeriod}</span></div>
+        ${p.promoLabel ? `<div class="modal-price-note">${p.promoLabel}</div>` : ''}
+      </div>` : `<div class="modal-price-big">${p.priceNum}<span style="font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--muted);background:none"> ${p.pricePeriod}</span></div>
+      <div class="modal-price-note">${p.priceNote}</div>`}
+      ${!p.originalPrice ? '' : `<div class="modal-price-note-aside">${p.priceNote}</div>`}
     </div>
 
     <div class="modal-section-label">Descripción</div>
@@ -286,6 +293,56 @@ document.addEventListener('keydown', e => {
    ─ tags         Array de strings — tipos de trabajo realizado (puede ser [])
    ══════════════════════════════════════════════════════════════════════════ */
 const TESTIMONIALS = [
+    {
+    img:         'testimonio10.jpg',
+    handle:      '@miguelzarza_trainer',
+    verified:    true,
+    role:        'Entrenador especializado en lipedema',
+    product:     'Proyecto a medida',
+    productType: 'custom',
+    text:        '',
+    tags:        ['Entrenamiento', 'Nutrición'],
+  },
+
+
+
+
+
+
+
+
+  
+
+  {
+    img:         'testimonio2.jpg',
+    handle:      '@strength.phase',
+    verified:    true,
+    role:        'Entrenador de powerlifting e hipertrofia',
+    product:     'Proyecto a medida',
+    productType: 'custom',
+    text:        '',
+    tags:        ['Entrenamiento','Gestión de clientes'],
+  },
+    {
+    img:         'testimonio12.jpg',
+    handle:      '@adriraw',
+    verified:    false,
+    role:        'Fisioterapeuta especializado en deportes de fuerza',
+    product:     'Proyecto a medida',
+    productType: 'custom',
+    text:        'Álvaro fue muy profesional en todo momento: con el trato, los tiempos de entrega y sobre todo con la resolución de errores y el mantenimiento de la plataforma post proyecto. Una inversión que me ha ayudado a mejorar la gestión de pacientes y economizar mucho tiempo.',
+    tags:        ['Fisioterapia', 'Gestión de clientes'],
+  },
+    {
+    img:         'testimonio13.jpg',
+    handle:      '@olayagaliano_',
+    verified:    false,
+    role:        'Dietista y entrenadora online',
+    product:     'Proyecto a medida',
+    productType: 'custom',
+    text:        'La verdad que tanto el servicio como el programa es de locos, lo más top es que puedes pedirlo a tu gusto desde detalles más básicos hasta lo más profesional, yo estoy muy contenta.',
+    tags:        ['Nutrición'],
+  },
     {
     img:         'testimonio9.jpg',
     handle:      '@pabloreveriego',
@@ -346,25 +403,15 @@ const TESTIMONIALS = [
     text:        'Trabajo totalmente personalizado a mi gusto y muy completo, ahora ahorro tiempo para dedicarme mejor a mis clientes. Destaco la implicación de Álvaro y capacidad para adaptarse a todo lo que yo necesitaba.',
     tags:        ['Nutrición'],
   },
-  {
-    img:         'testimonio2.jpg',
-    handle:      '@strength.phase',
+      {
+    img:         'testimonio11.jpg',
+    handle:      '@juan.gason',
     verified:    true,
-    role:        'Entrenador de powerlifting e hipertrofia',
+    role:        'Atleta y entrenador de streetlifting',
     product:     'Proyecto a medida',
     productType: 'custom',
-    text:        '',
-    tags:        ['Entrenamiento','Gestión de clientes'],
-  },
-  {
-    img:         'testimonio5.jpg',
-    handle:      '@miguelatm_',
-    verified:    false,
-    role:        "Atleta Men's Physique y entrenador online",
-    product:     'Proyecto a medida',
-    productType: 'custom',
-    text:        'Con el paso del tiempo te das cuenta a la hora de ser un buen entrenador el tener tiempo para invertir en tu negocio o en ti. Y esto es lo que hemos conseguido, una plataforma donde poder trabajar de manera ordenada, eficiente, clara, con buenos registros que me facilitan mucho el trabajo día a día y que dan una profesionalidad a mi servicio increíble.',
-    tags:        ['Entrenamiento', 'Nutrición', 'Contabilidad'],
+    text:        'Estoy muy contento con el trabajo de Álvaro. Ya le he pedido varios Excels porque trabaja rápido, entiende muy bien las necesidades del proyecto y se implica mucho en mejorar la herramienta. En mi caso, me ha ayudado a gestionar mejor a mis clientes y a dar un servicio más ordenado, medible y profesional!',
+    tags:        ['Entrenamiento', 'Contabilidad'],
   },
   {
     img:         'testimonio6.jpg',
@@ -375,6 +422,16 @@ const TESTIMONIALS = [
     productType: 'custom',
     text:        'Estoy muy contento con el trabajo de Álvaro, gracias a la herramienta que me ha proporcionado he podido dar un paso hacia adelante en la calidad de mi servicio y todos mis atletas se han podido beneficiar de ello.',
     tags:        ['Entrenamiento'],
+  },
+  {
+    img:         'testimonio5.jpg',
+    handle:      '@miguelatm_',
+    verified:    false,
+    role:        "Atleta Men's Physique y entrenador online",
+    product:     'Proyecto a medida',
+    productType: 'custom',
+    text:        'Con el paso del tiempo te das cuenta a la hora de ser un buen entrenador el tener tiempo para invertir en tu negocio o en ti. Y esto es lo que hemos conseguido, una plataforma donde poder trabajar de manera ordenada, eficiente, clara, con buenos registros que me facilitan mucho el trabajo día a día y que dan una profesionalidad a mi servicio increíble.',
+    tags:        ['Entrenamiento', 'Nutrición', 'Contabilidad'],
   },
 ];
 
