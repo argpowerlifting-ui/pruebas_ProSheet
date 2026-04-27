@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProSheet · Proyectos por suscripción</title>
+  <meta name="description" content="Sistemas profesionales de Google Sheets por suscripción mensual. Precio fijo, soporte incluido y sin sobrecoste por número de atletas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="ProSheet" />
+      <span class="nav-logo-text">ProSheet</span>
+    </a>
+    <div class="nav-links">
+      <a href="#productos">Programas</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Inicio
+      </a>
+      <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/oscuro" aria-label="Alternar tema">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="https://wa.me/34651381966" target="_blank" class="nav-cta">Hablemos →</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#productos" onclick="closeMobileMenu()">Programas</a>
+    <a href="#faq"       onclick="closeMobileMenu()">FAQ</a>
+    <a href="index.html" class="mobile-back">← Volver al inicio</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section id="hero" class="page-hero">
+    <div class="hero-inner" style="text-align:center">
+      <div class="page-hero-back reveal-fast">
+        <a href="index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+      <div class="hero-badge reveal-fast"><span class="hero-badge-dot"></span>Suscripción mensual · Precio fijo</div>
+      <h1 class="reveal-fast">Profesional desde el día&nbsp;1.<br /><span class="grad-text">Sin esperar. Sin barreras.</span></h1>
+      <p class="hero-desc reveal-fast">Sistemas completos construidos sobre 130 proyectos a medida. Listos para usar en días. Precio fijo mensual sin sobrecoste por número de atletas.</p>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- PRODUCTS -->
+  <section id="productos" style="padding: 72px 0;">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="sec-label">Programas disponibles</div>
+        <h2 class="sec-title">Elige tu sistema</h2>
+        <p class="sec-sub">Cada programa está diseñado para una necesidad concreta. Haz clic para ver todos los detalles.</p>
+      </div>
+
+      <div class="products-grid products-grid--centered" style="margin-top:48px">
+
+        <!-- ── SISTEMA PRO ── -->
+        <div class="product-card product-card--wide reveal" data-product="sistema-pro">
+          <div class="product-img-wrap">
+            <img src="mockup4-Sistema-de-entrenamiento-prosheet.png" alt="Sistema Pro · ProSheet"
+                 loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <!-- Fallback placeholder si la imagen aún no existe -->
+            <div class="product-img-placeholder" style="display:none">
+              <div class="product-img-mock">
+                <div class="mock-sidebar"></div>
+                <div class="mock-content">
+                  <div class="mock-bar w-60"></div>
+                  <div class="mock-bar w-40"></div>
+                  <div class="mock-row"><div class="mock-cell green"></div><div class="mock-cell"></div><div class="mock-cell"></div></div>
+                  <div class="mock-row"><div class="mock-cell"></div><div class="mock-cell green s"></div><div class="mock-cell"></div></div>
+                  <div class="mock-row"><div class="mock-cell"></div><div class="mock-cell"></div><div class="mock-cell green"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-img-overlay"></div>
+            <div class="product-type-badge sub-badge">Suscripción mensual</div>
+          </div>
+          <div class="product-body">
+            <div class="product-price-row">
+              <div class="product-name">Sistema Pro</div>
+              <div class="product-price"><span class="price-num">39,99 €</span><span class="price-period">/mes</span></div>
+            </div>
+            <div class="product-desc">Sistema integral de gestión, programación y análisis para entrenadores. Excel del atleta, programación anual, análisis profundo y WebApp privada. Todo conectado y automatizado.</div>
+            <div class="product-includes">
+              <div class="product-include"><i class="fa-solid fa-check"></i>Excel del cliente (piloto automático)</div>
+              <div class="product-include"><i class="fa-solid fa-check"></i>Excel de programación + análisis</div>
+              <div class="product-include"><i class="fa-solid fa-check"></i>WebApp privada de gestión</div>
+              <div class="product-include"><i class="fa-solid fa-check"></i>Manual PDF + vídeo · Soporte técnico</div>
+            </div>
+            <button class="btn-product-detail" onclick="openModal('sistema-pro')">
+              Ver programa completo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Plantilla próximo producto — descomenta cuando lo añadas:
+        <div class="product-card product-card--coming reveal">
+          <div class="coming-soon-inner">
+            <div class="coming-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="coming-title">Próximamente</div>
+            <div class="coming-desc">Nuevo programa de suscripción en desarrollo.</div>
+          </div>
+        </div>
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ reducido -->
+  <hr class="section-sep" />
+  <section id="faq" style="padding:72px 0">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-label">Preguntas frecuentes</div><h2 class="sec-title">Dudas sobre los programas</h2></div>
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué diferencia hay entre el Sistema Pro y un proyecto a medida?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Lo personalizado es la cima: partimos desde cero y construimos exactamente lo que necesitas. Sistema Pro es la destilación de 130 proyectos a medida en un sistema profesional accesible, listo desde el primer día y con precio fijo mensual. Son complementarios, no excluyentes.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si cancelo la suscripción?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Todos tus datos viven en tu Google Drive, nunca en servidores de terceros. Si cancelas, conservas toda la información histórica de tus atletas. Las funciones automatizadas que dependen del servicio activo dejarán de actualizarse, pero los datos ya registrados son completamente tuyos.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿El precio sube si tengo más atletas?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>No. El precio es fijo independientemente del número de atletas que gestiones. Es una de las diferencias clave frente a las apps del mercado, que cobran por usuario.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué ocurre durante la entrega inicial?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Configuro el sistema en tu cuenta de Google Drive, personalizo los colores y logo con tu identidad de marca, y te explico cómo funciona cada módulo. Además recibes el manual en PDF y en vídeo para que tengas siempre la referencia a mano.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="ProSheet" /><span class="footer-logo-text">ProSheet</span></a>
+    <div class="footer-copy">© 2026 ProSheet · Todos los derechos reservados</div>
+  </footer>
+
+  <a href="https://wa.me/34651381966" target="_blank" class="wa-float" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="productModal" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-inner" id="modalInner"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

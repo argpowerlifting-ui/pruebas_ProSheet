@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProSheet · Proyectos a medida</title>
+  <meta name="description" content="Herramientas de Google Sheets 100% personalizadas para entrenadores y nutricionistas online. Automatiza tu negocio con soluciones a medida." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="ProSheet" />
+      <span class="nav-logo-text">ProSheet</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">Sobre mí</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#portfolio">Portafolio</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Inicio
+      </a>
+      <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/oscuro" aria-label="Alternar tema">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="https://wa.me/34651381966?text=Hola%20Álvaro%2C%20quiero%20agendar%20la%20llamada%20inicial%20para%20iniciar%20el%20proceso%20de%20creación%20de%20mi%20herramienta%20de%20trabajo" target="_blank" class="nav-cta">Hablemos →</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"       onclick="closeMobileMenu()">Sobre mí</a>
+    <a href="#metodologia" onclick="closeMobileMenu()">Metodología</a>
+    <a href="#tarifas"     onclick="closeMobileMenu()">Tarifas</a>
+    <a href="#portfolio"   onclick="closeMobileMenu()">Portafolio</a>
+    <a href="#faq"         onclick="closeMobileMenu()">FAQ</a>
+    <a href="index.html"   class="mobile-back">← Volver al inicio</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section id="hero" class="page-hero">
+    <div class="hero-inner" style="text-align:center">
+      <div class="page-hero-back reveal-fast">
+        <a href="index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+      <div class="hero-badge reveal-fast"><span class="hero-badge-dot"></span>100% personalizado · Desde cero</div>
+      <h1 class="reveal-fast">Tu negocio tiene lógica propia.<br /><span class="grad-text">Tu herramienta, también.</span></h1>
+      <p class="hero-desc reveal-fast">Cada proyecto parte desde cero, construido sobre tu flujo real de trabajo. Sin plantillas. Sin compromisos. Con soporte técnico incluido.</p>
+      <div class="hero-actions reveal-fast">
+        <a href="https://wa.me/34651381966?text=Hola%20Álvaro%2C%20quiero%20agendar%20la%20llamada%20inicial%20para%20iniciar%20el%20proceso%20de%20creación%20de%20mi%20herramienta%20de%20trabajo" target="_blank" class="btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Solicitar llamada inicial
+        </a>
+        <a href="#metodologia" class="btn-ghost">Ver metodología ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-header reveal">
+        <div class="sec-label">Sobre mí</div>
+        <h2 class="sec-title">Más que hojas de cálculo,<br /><span class="grad-text">sistemas que trabajan para ti</span></h2>
+        <p class="sec-sub">Mi objetivo es que dejes de dedicar horas a tareas repetitivas y te centres en lo que realmente importa: tus clientes.</p>
+      </div>
+      <div class="about-profile reveal">
+        <div class="about-card-logo"><img src="logo.png" alt="ProSheet logo" /></div>
+        <div class="about-profile-info">
+          <div class="about-name">Álvaro</div>
+          <div class="about-role">Desarrollador en Google Sheets</div>
+          <div class="about-text">Combino mi formación en Ciencias del deporte y mi experiencia como entrenador con un dominio profundo de Google Sheets para crear herramientas reales que mejoren tu negocio online.</div>
+          <div class="chips">
+            <span class="chip">Entrenamiento online</span>
+            <span class="chip">Nutrición</span>
+            <span class="chip">Automatizaciones</span>
+            <span class="chip">Gestión de clientes</span>
+            <span class="chip">Contabilidad</span>
+            <span class="chip">Gestión de inventario</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-features">
+        <div class="about-feat reveal">
+          <div class="about-feat-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div><div class="about-feat-title">100% personalizado</div><div class="about-feat-text">Cada proyecto parte de cero, adaptado a tu flujo real de trabajo.</div></div>
+        </div>
+        <div class="about-feat reveal">
+          <div class="about-feat-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div><div class="about-feat-title">Automatización real</div><div class="about-feat-text">Fórmulas avanzadas y scripts que eliminan tareas repetitivas.</div></div>
+        </div>
+        <div class="about-feat reveal">
+          <div class="about-feat-icon"><i class="fa-solid fa-headset"></i></div>
+          <div><div class="about-feat-title">Soporte técnico</div><div class="about-feat-text">Una vez entregado el programa, me tendrás a tu disposición para solucionar cualquier problema.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- METHODOLOGY -->
+  <section id="metodologia">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="sec-label">Cómo trabajamos</div>
+        <h2 class="sec-title">Metodología de trabajo</h2>
+        <p class="sec-sub">Un proceso claro y estructurado para garantizar que el resultado final sea exactamente lo que necesitas.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-tag">Llamada inicial ~50 min</div>
+            <div class="step-text">Analizamos tu herramienta actual, tu flujo de trabajo y las funcionalidades que necesitas. Te muestro proyectos ya terminados para inspirarnos y concretar ideas.</div>
+            <div class="step-hl"><span class="step-hl-icon"><i class="fa-solid fa-phone"></i></span>Objetivo: definir por completo la estructura y funcionalidades del proyecto.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-tag">Documentación técnica 48–72 h</div>
+            <div class="step-text">En 2-3 días tras la llamada inicial recibirás un PDF de 5–15 páginas con la estructura de documentos y hojas, descripción de funcionalidades, fórmulas y automatizaciones del programa.</div>
+            <div class="step-hl"><span class="step-hl-icon"><i class="fa-solid fa-file-lines"></i></span>Objetivo: servir como base del presupuesto y como hoja de ruta para la creación del programa.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-tag">Revisión por tu parte</div>
+            <div class="step-text">Al recibir la documentación tendrás que leerla y confirmar que refleja exactamente lo acordado durante la llamada inicial. Si tienes dudas de alguna sección podrás preguntarme sin compromiso.</div>
+            <div class="step-hl"><span class="step-hl-icon"><i class="fa-solid fa-gear"></i></span>Objetivo: ajustar cualquier detalle del programa antes de presupuestar.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-tag">Presupuesto desglosado</div>
+            <div class="step-text">Una vez des el visto bueno a la documentación elaboraré el presupuesto desglosando el coste de cada documento, hoja y funcionalidad definidas en la documentación. Sin sorpresas.</div>
+            <div class="step-hl"><span class="step-hl-icon"><i class="fa-solid fa-credit-card"></i></span>Objetivo: desglosar el coste de cada elemento para que puedas decidir qué parámetros incluir.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- PRICING -->
+  <section id="tarifas">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="sec-label">Tarifas</div>
+        <h2 class="sec-title">Transparencia desde el primer paso</h2>
+      </div>
+      <div class="pricing-wrap reveal">
+        <div class="pricing-card">
+          <div class="pricing-top">
+            <div class="pricing-label">Llamada inicial + Documentación + Presupuesto</div>
+            <div class="pricing-amount"><sup>€</sup>47<sub>+ IVA</sub></div>
+            <div class="pricing-note">Se descuenta del presupuesto final si finalmente es aceptado. Pago único por adelantado.</div>
+          </div>
+          <div class="pricing-features">
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feat-text"><strong>Llamada inicial de ~50 minutos</strong><span>Análisis completo de tu flujo de trabajo y necesidades.</span></div></div>
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feat-text"><strong>Documentación técnica en PDF (48–72 h)</strong><span>Entre 5 y 15 páginas con toda la estructura final del proyecto.</span></div></div>
+            <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feat-text"><strong>Presupuesto detallado y sin compromiso</strong><span>Basado en la documentación aprobada. El presupuesto final sí podrá fraccionarse.</span></div></div>
+          </div>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/34651381966?text=Hola%20Álvaro%2C%20quiero%20agendar%20la%20llamada%20inicial%20para%20comenzar%20a%20crear%20mi%20herramienta%20de%20trabajo" target="_blank" class="btn-primary">Empieza ahora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="sec-label">Portafolio</div>
+        <h2 class="sec-title">Proyectos reales, resultados reales</h2>
+        <p class="sec-sub">Aquí te dejo 3 proyectos hechos a medida para 3 de mis clientes.</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrap"><img src="mockup1.png" alt="Sistema de gestión de clientes" loading="lazy" /><div class="portfolio-img-overlay"></div><div class="portfolio-img-tag">Gestión</div></div>
+          <div class="portfolio-body">
+            <div class="portfolio-title">Excel de contabilidad y gestión</div>
+            <div class="portfolio-desc">CRM completo con módulos para guardar y gestionar clientes, trabajadores, productos, ingresos, gastos y movimientos. Navegación lateral y buscador integrado.</div>
+            <div class="portfolio-tags"><span class="ptag">CRM</span><span class="ptag">Contabilidad</span><span class="ptag">Gestión</span><span class="ptag">Dashboards</span><span class="ptag">Control total</span></div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrap"><img src="mockup2.png" alt="Herramienta de entrenamiento con calculadoras" loading="lazy" /><div class="portfolio-img-overlay"></div><div class="portfolio-img-tag">Entrenamiento</div></div>
+          <div class="portfolio-body">
+            <div class="portfolio-title">Excel de entrenamiento integral</div>
+            <div class="portfolio-desc">Ficha del atleta, calculadora de aproximaciones personalizada, semana de entrenamiento, cálculo de métricas, dashboards externos. Todo integrado y automatizado.</div>
+            <div class="portfolio-tags"><span class="ptag">Máximo rendimiento</span><span class="ptag">Antiplagio</span><span class="ptag">Interfaz móvil</span><span class="ptag">Análisis de datos</span></div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrap"><img src="mockup3.png" alt="Programa de entrenamiento semanal" loading="lazy" /><div class="portfolio-img-overlay"></div><div class="portfolio-img-tag">Nutrición</div></div>
+          <div class="portfolio-body">
+            <div class="portfolio-title">Excel para la pauta de planes nutricionales</div>
+            <div class="portfolio-desc">Planifica y ajusta planes nutricionales en segundos mediante sistemas automáticos. Obtén los planes en PDF con un par de clics.</div>
+            <div class="portfolio-tags"><span class="ptag">PDF automáticos</span><span class="ptag">Versatilidad</span><span class="ptag">Ajustes automáticos</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-label">Preguntas frecuentes</div><h2 class="sec-title">Todo lo que necesitas saber</h2></div>
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué coste tendría mi proyecto?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Depende del tipo de proyecto, sus funcionalidades, estructura y complejidad. La llamada inicial es clave para definir la magnitud del proyecto y poder presupuestar con precisión. Solo así puedo darte un número real y ajustado a lo que necesitas.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué plazos de entrega tienes?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Los plazos varían en función de la complejidad del proyecto y la posición en la cola. Una vez aceptado el presupuesto y realizado el primer pago, tu plaza queda fijada.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Cómo funciona la cola de proyectos?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>El orden se establece según la fecha del primer pago del presupuesto, garantizando un sistema justo y transparente para todos.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Los pagos del presupuesto final se pueden fraccionar?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Sí, el presupuesto final puede fraccionarse en partes iguales. El primer pago es necesario abonarlo antes de iniciar el proyecto para fijar tu plaza, y el resto antes de la entrega. La llamada inicial (47€ + IVA) se abona aparte, de forma única y al menos un día antes de la llamada.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si quiero cambios tras aprobar la documentación?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>La documentación técnica define el alcance acordado. Las modificaciones o ampliaciones solicitadas después de aceptar el presupuesto tendrán un coste adicional. Por eso es clave revisarla bien antes de aprobarla.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">¿Solo trabajas con entrenadores y nutricionistas?<span class="faq-arrow">▾</span></button><div class="faq-body"><p>Me especializo en ese sector, pero no me cierro a nada. Si necesitas cualquier herramienta en Google Sheets — contabilidad, inventario, gestión de productos, etc. — puedo ayudarte igualmente.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="reveal"><div class="sec-label">Contacto</div><h2 class="sec-title">¿Listo para empezar?</h2></div>
+      <p class="contact-intro reveal">Si estás interesado en una herramienta completamente personalizada, el primer paso es hablar.</p>
+      <div class="contact-form-card reveal">
+        <div class="form-title">Cuéntame tu proyecto</div>
+        <div class="form-row">
+          <div class="form-group"><label>Tu nombre</label><input type="text" placeholder="Ej: Carlos García" id="f-name" /></div>
+          <div class="form-group"><label>¿A qué te dedicas?</label>
+            <select id="f-type">
+              <option value="">Selecciona una opción</option>
+              <option>Entrenador/a personal u online</option>
+              <option>Nutricionista o dietista</option>
+              <option>Entrenador/a y Nutricionista</option>
+              <option>Empresa / Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Describe brevemente el proyecto que necesitas</label><textarea id="f-msg" placeholder="Necesito un programa de entrenamiento que..."></textarea></div>
+        <button class="form-submit" onclick="sendWhatsApp()">Enviar por WhatsApp →</button>
+        <div class="form-note">Al pulsar, se abrirá WhatsApp con tu mensaje listo para enviar.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="ProSheet" /><span class="footer-logo-text">ProSheet</span></a>
+    <div class="footer-copy">© 2026 ProSheet · Todos los derechos reservados</div>
+  </footer>
+
+  <a href="https://wa.me/34651381966?text=Hola%20Álvaro%2C%20me%20interesaría%20trabajar%20contigo" target="_blank" class="wa-float" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
