@@ -321,8 +321,9 @@ body.light .hero-card--sub:hover    { box-shadow: 0 22px 60px rgba(19,88,181,.14
 body.light .hero-card--one:hover    { box-shadow: 0 22px 60px rgba(109,40,217,.12), 0 4px 16px rgba(0,0,0,.08); }
 
 .hero-card-icon {
-  width: 44px; height: 44px; border-radius: 12px; margin-bottom: 18px;
+  width: 44px; height: 44px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  /* no margin-bottom — sits in flex row with badge */
 }
 .hero-card-icon svg { width: 22px; height: 22px; }
 .hero-card--custom .hero-card-icon { background: rgba(47,232,184,.12); border: 1px solid rgba(47,232,184,.25); color: #2fe8b8; }
@@ -334,7 +335,19 @@ body.light .hero-card--custom .hero-card-icon { background: rgba(10,122,94,.15);
 body.light .hero-card--sub    .hero-card-icon { background: rgba(19,88,181,.15);  border-color: rgba(19,88,181,.35);  color: #1358b5; }
 body.light .hero-card--one    .hero-card-icon { background: rgba(109,40,217,.15); border-color: rgba(109,40,217,.35); color: #6d28d9; }
 
-.hero-card-badge { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 8px; }
+/* ── Top row: icon + badge side by side ── */
+.hero-card-top {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+/* Badge: same visual weight as old title, but concise */
+.hero-card-badge {
+  font-size: 1rem; font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
 .hero-card--custom .hero-card-badge { color: #2fe8b8; }
 .hero-card--sub    .hero-card-badge { color: #3a9eff; }
 .hero-card--one    .hero-card-badge { color: #a855f7; }
@@ -342,8 +355,10 @@ body.light .hero-card--custom .hero-card-badge { color: #0a7a5e; }
 body.light .hero-card--sub    .hero-card-badge { color: #1358b5; }
 body.light .hero-card--one    .hero-card-badge { color: #6d28d9; }
 
+/* Title hidden (removed from HTML, keep rule for safety) */
+.hero-card-title { display: none; }
+
 .hero-card-body { flex: 1; }
-.hero-card-title { font-weight: 800; font-size: 1.05rem; line-height: 1.25; margin-bottom: 10px; color: var(--text); }
 .hero-card-desc  { font-size: .83rem; color: var(--muted); line-height: 1.65; }
 
 .hero-card-arrow {
@@ -971,7 +986,99 @@ body.light .testi-type-badge {
   max-width: 520px !important;
 }
 
-/* Reuse .ptag inside testi-tags (same style as portfolio) */
+/* ── nav-back: icon-only on mobile ── */
+.nav-back--icon {
+  /* On desktop: show as pill with text */
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-back-label { /* text part */ }
+
+/* ── Product name: larger ── */
+.product-name {
+  font-weight: 800; font-size: 1.25rem; line-height: 1.2;
+}
+
+/* ── +IVA inline with price ── */
+.price-iva-inline {
+  font-size: .72rem; font-weight: 600;
+  color: var(--muted); margin-left: 3px; vertical-align: middle;
+}
+.price-iva-current { color: var(--muted); }
+
+/* ── Urgency banner inside product card ── */
+.product-urgency {
+  display: flex; align-items: center; gap: 6px;
+  margin: 10px 0 14px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(47,232,184,.1), rgba(58,158,255,.08));
+  border: 1px solid rgba(47,232,184,.25);
+  font-size: .78rem; font-weight: 700; color: var(--cyan);
+  letter-spacing: .02em;
+}
+body.light .product-urgency {
+  background: linear-gradient(135deg, rgba(10,122,94,.08), rgba(19,88,181,.06));
+  border-color: rgba(10,122,94,.25); color: #0a7a5e;
+}
+.product-urgency svg { flex-shrink: 0; color: var(--cyan); }
+body.light .product-urgency svg { color: #0a7a5e; }
+
+/* ── Modal urgency badge ── */
+.modal-urgency {
+  display: flex; align-items: center; gap: 8px;
+  margin: -20px 0 24px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(47,232,184,.1), rgba(58,158,255,.08));
+  border: 1px solid rgba(47,232,184,.28);
+  font-size: .82rem; font-weight: 700; color: var(--cyan);
+  letter-spacing: .02em;
+}
+body.light .modal-urgency {
+  background: linear-gradient(135deg, rgba(10,122,94,.08), rgba(19,88,181,.06));
+  border-color: rgba(10,122,94,.25); color: #0a7a5e;
+}
+
+/* ── Modal modules: number as watermark ── */
+.modal-modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 28px; }
+.modal-module {
+  padding: 14px 16px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 0;
+  min-height: 72px;
+  transition: border-color .2s;
+}
+.modal-module:hover { border-color: var(--border2); }
+
+/* Watermark number — behind content */
+.modal-module-watermark {
+  position: absolute;
+  left: 2px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 5.5rem; font-weight: 900;
+  line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: .1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -.06em;
+  z-index: 0;
+}
+body.light .modal-module-watermark { opacity: .08; }
+
+/* Content sits above watermark */
+.modal-module-content {
+  position: relative; z-index: 1;
+  padding-left: 52px; /* clear the watermark */
+}
+.modal-module-title { font-weight: 700; font-size: .88rem; margin-bottom: 4px; color: var(--text); }
+.modal-module-desc  { font-size: .76rem; color: var(--muted); line-height: 1.55; }
+
+/* Reuse .ptag inside .testi-tags */
 .testi-tags .ptag { cursor: default; }
 
 /* ════════════════════════════ RESPONSIVE ═════════════════════════════════ */
@@ -1001,15 +1108,16 @@ body.light .testi-type-badge {
   .hero-splash { padding: 100px 0 60px; }
   .page-hero   { padding: 100px 0 48px; }
   .hero-stats  { gap: 22px; }
-  .hero-card   { flex-direction: column; }
-  .hero-card-icon  { margin-bottom: 14px; }
+  /* Hero cards: column on mobile but compact */
+  .hero-card   { flex-direction: column; padding: 18px 18px; }
+  .hero-card-top { margin-bottom: 10px; }
+  .hero-card-desc { font-size: .8rem; }
   .portfolio-grid  { grid-template-columns: 1fr; }
   .products-grid   { grid-template-columns: 1fr; }
   /* Centred grid: 1 column on mobile */
   .products-grid--centered .product-card,
   .products-grid--centered .product-card--coming {
-    flex: 0 0 100%;
-    max-width: 100%;
+    flex: 0 0 100%; max-width: 100%;
   }
   .contact-methods { grid-template-columns: 1fr; }
   .contact-form-card { padding: 24px 20px; }
@@ -1017,10 +1125,19 @@ body.light .testi-type-badge {
   .modal-inner { padding: 20px 20px 32px; }
   .modal-images { grid-template-columns: 1fr; }
   .modal-price-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .modal-modules { grid-template-columns: 1fr; }
   .about-text, .chips { width: 100%; margin-left: 0; }
   .notify-inner { flex-direction: column; text-align: center; }
   .notify-btn { width: 100%; justify-content: center; }
   /* Carousel on mobile */
   .testi-card { width: 240px; }
   .carousel-fade { width: 60px; }
+  /* nav-back: icon-only circle, same size as theme-toggle */
+  .nav-back--icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    padding: 0; gap: 0;
+    justify-content: center;
+  }
+  .nav-back-label { display: none; }
+  .nav-back--icon svg { width: 17px; height: 17px; }
 }
