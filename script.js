@@ -66,12 +66,12 @@ const PRODUCTS = [
     id:          'sistema-pro',
     type:        'sub',
     typeBadge:   'Suscripción mensual',
-    name:        'Sistema Pro',
+    name:        'Programa de entrenamiento ProSheet',
     tagline:     'El sistema que yo mismo usaría si empezara hoy.',
     priceNum:    '39,99 €',
-    pricePeriod: '/mes',
+    pricePeriod: '/mes +IVA',
     originalPrice: '49,99 €',
-    promoLabel:  'Precio de lanzamiento (primeros 15) · +IVA',
+    promoLabel:  '🔥 Precio de lanzamiento — solo primeros 15',
     priceNote:   'Precio fijo. Sin sobrecoste por número de atletas.',
     description: 'Construido sobre 130 proyectos a medida en 3 años. Sistema Pro no es una plantilla: es la destilación de toda esa experiencia en un sistema profesional accesible desde el primer día. Programación, análisis, gestión de clientes y automatización completa en Google Sheets.',
     /* ── AÑADIR IMÁGENES: incluye todas las rutas que quieras aquí.
@@ -209,12 +209,14 @@ function openModal(productId) {
       </div>`;
   }
 
-  /* ── Modules: redesigned with big numbers ── */
+  /* ── Modules: watermark number behind text ── */
   const modulesHtml = p.modules.map(m => `
     <div class="modal-module">
-      <div class="modal-module-num-big">${m.num}</div>
-      <div class="modal-module-title">${m.title}</div>
-      <div class="modal-module-desc">${m.desc}</div>
+      <div class="modal-module-watermark">${m.num}</div>
+      <div class="modal-module-content">
+        <div class="modal-module-title">${m.title}</div>
+        <div class="modal-module-desc">${m.desc}</div>
+      </div>
     </div>`).join('');
 
   /* ── Perks ── */
@@ -235,11 +237,10 @@ function openModal(productId) {
       ${p.originalPrice ? `<div class="modal-price-col">
         <div class="modal-price-original">${p.originalPrice}<span style="font-size:.75rem;font-weight:400"> ${p.pricePeriod}</span></div>
         <div class="modal-price-big">${p.priceNum}<span style="font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--muted);background:none"> ${p.pricePeriod}</span></div>
-        ${p.promoLabel ? `<div class="modal-price-note">${p.promoLabel}</div>` : ''}
       </div>` : `<div class="modal-price-big">${p.priceNum}<span style="font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--muted);background:none"> ${p.pricePeriod}</span></div>
       <div class="modal-price-note">${p.priceNote}</div>`}
-      ${!p.originalPrice ? '' : `<div class="modal-price-note-aside">${p.priceNote}</div>`}
     </div>
+    ${p.promoLabel ? `<div class="modal-urgency">${p.promoLabel}</div>` : ''}
 
     <div class="modal-section-label">Descripción</div>
     <p style="color:var(--muted);font-size:.9rem;line-height:1.75;margin-bottom:28px">${p.description}</p>
@@ -300,7 +301,7 @@ const TESTIMONIALS = [
     role:        'Entrenador especializado en lipedema',
     product:     'Proyecto a medida',
     productType: 'custom',
-    text:        '',
+    text:        'El servicio que he recibido por Álvaro ha sido siempre de diez, no solo por su profesionalidad si no también por su cercanía. Siempre muy meticuloso con cada detalle para que el resultado final sea el mejor. Sin duda, cualquier cosa que necesites en cuanto a programación de Excel o plantillas, es el mejor.',
     tags:        ['Entrenamiento', 'Nutrición'],
   },
 
@@ -308,6 +309,9 @@ const TESTIMONIALS = [
 
 
 
+
+
+  
 
 
 
@@ -448,7 +452,7 @@ const VERIFIED_SVG = `<svg class="testi-verified" viewBox="0 0 24 24" aria-label
 </svg>`;
 
 function buildCarousel() {
-  const wrap = document.getElementById('carouselWrap');
+  const wrap  = document.getElementById('carouselWrap');
   if (!wrap) return;
 
   const outer   = wrap.closest('.section-testimonials');
@@ -462,6 +466,7 @@ function buildCarousel() {
   const GAP           = 24;
   const STEP          = CARD_W + GAP;
   const N             = TESTIMONIALS.length;
+  const COPIES        = 3;          // render 3 copies for infinite room
   const SECS_PER_CARD = 5;
   const DURATION      = N * SECS_PER_CARD;
 
@@ -475,7 +480,6 @@ function buildCarousel() {
       : '';
     return `
       <div class="testi-card">
-        <!-- Badge: top-left overlay, like portfolio-img-tag -->
         <div class="testi-type-badge" style="--badge-color:${color}">${t.product}</div>
         <div class="testi-img-wrap">
           <img src="${t.img}" alt="${t.handle}"
@@ -494,30 +498,50 @@ function buildCarousel() {
       </div>`;
   }
 
-  /* ── Render 3 copies for seamless loop ── */
-  track.innerHTML = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map(cardHTML).join('');
+  /* ── Render COPIES × N cards ── */
+  const allCards = Array.from({ length: COPIES }, () => TESTIMONIALS).flat();
+  track.innerHTML = allCards.map(cardHTML).join('');
 
-  /* ── Animation parameters ── */
+  /* ── Animation: scrolls exactly 1 copy width ── */
   const loopWidth = N * STEP;
   track.style.setProperty('--carousel-width',    `${loopWidth}px`);
   track.style.setProperty('--carousel-duration', `${DURATION}s`);
 
-  /* ── Random starting position ── */
+  /* ── Random start via negative animation-delay ── */
   const startIdx   = Math.floor(Math.random() * N);
   const startDelay = -(startIdx / N) * DURATION;
   track.style.animationDelay = `${startDelay}s`;
 
   /* ── State ── */
   let paused     = false;
-  let currentIdx = startIdx;
+  // virtualIdx points into the flat COPIES*N array.
+  // We always snap to the MIDDLE copy (copy index 1) so there's room both ways.
+  // Middle copy starts at flat index N.
+  let virtualIdx = N + startIdx;   // middle copy, startIdx position
 
-  function setHint(text) { if (hintEl) hintEl.textContent = text; }
+  function setHint(t) { if (hintEl) hintEl.textContent = t; }
 
-  /* ── PAUSE: reads live transform, removes animation, snaps to nearest card ── */
+  /* ── Silently reset to middle copy after transition (no visual jump) ── */
+  function resetToMiddle() {
+    const canonIdx  = ((virtualIdx % N) + N) % N;
+    const middlePos = N + canonIdx;
+    if (virtualIdx !== middlePos) {
+      virtualIdx = middlePos;
+      track.style.transition = 'none';
+      track.style.transform  = `translateX(${-virtualIdx * STEP}px)`;
+    }
+  }
+
+  track.addEventListener('transitionend', () => {
+    if (paused) resetToMiddle();
+  });
+
+  /* ── PAUSE ── */
   function pause() {
     if (paused) return;
     paused = true;
 
+    // Read live visual offset before removing animation
     const matrix = window.getComputedStyle(track).transform;
     let rawOffset = 0;
     if (matrix && matrix !== 'none') {
@@ -526,9 +550,14 @@ function buildCarousel() {
     }
 
     track.style.animation  = 'none';
-    currentIdx = ((Math.round(-rawOffset / STEP) % N) + N) % N;
-    const snapPx = -currentIdx * STEP;
 
+    // Derive which canonical card we're closest to
+    const canonIdx  = ((Math.round(-rawOffset / STEP) % N) + N) % N;
+    // Place in middle copy for maximum room in both directions
+    virtualIdx = N + canonIdx;
+    const snapPx   = -(virtualIdx * STEP);
+
+    // Apply current visual position first (no jump), then smooth-snap
     track.style.transition = 'none';
     track.style.transform  = `translateX(${rawOffset}px)`;
     requestAnimationFrame(() => {
@@ -542,28 +571,71 @@ function buildCarousel() {
     if (btnPrev) btnPrev.classList.add('visible');
     if (btnNext) btnNext.classList.add('visible');
     wrap.style.cursor = 'default';
-    setHint('Usa las flechas para navegar');
+    setHint('Usa las flechas o desliza para navegar');
   }
 
-  /* ── SLIDE (only when paused) ── */
-  function slideTo(idx) {
+  /* ── SLIDE: moves virtualIdx freely; transitionend will reset to middle ── */
+  function slideTo(delta) {
     if (!paused) return;
-    currentIdx = ((idx % N) + N) % N;
+    virtualIdx += delta;
+    // Safety clamp — stay within the 3 copies (0 … COPIES*N - 1)
+    virtualIdx = Math.max(0, Math.min(COPIES * N - 1, virtualIdx));
     track.style.transition = 'transform 0.4s cubic-bezier(.22,1,.36,1)';
-    track.style.transform  = `translateX(${-currentIdx * STEP}px)`;
+    track.style.transform  = `translateX(${-virtualIdx * STEP}px)`;
   }
 
-  /* ── Events ── */
+  /* ── Touch swipe ── */
+  let touchStartX         = 0;
+  let touchStartOffset    = 0;
+  let touchActive         = false;
+
+  wrap.addEventListener('touchstart', e => {
+    // Always pause on first touch
+    if (!paused) pause();
+    touchStartX      = e.touches[0].clientX;
+    touchStartOffset = -(virtualIdx * STEP);
+    touchActive      = true;
+    track.style.transition = 'none'; // follow finger immediately
+  }, { passive: true });
+
+  wrap.addEventListener('touchmove', e => {
+    if (!touchActive || !paused) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    // Constrain to valid range
+    const newOffset = Math.max(-(COPIES * N - 1) * STEP, Math.min(0, touchStartOffset + dx));
+    track.style.transform = `translateX(${newOffset}px)`;
+  }, { passive: true });
+
+  wrap.addEventListener('touchend', e => {
+    if (!touchActive || !paused) return;
+    touchActive = false;
+    const dx        = e.changedTouches[0].clientX - touchStartX;
+    const threshold = STEP * 0.25;   // 25% of a card width to commit
+
+    if (Math.abs(dx) > threshold) {
+      slideTo(dx < 0 ? 1 : -1);      // left swipe → next, right → prev
+    } else {
+      // Snap back to current card
+      track.style.transition = 'transform 0.4s cubic-bezier(.22,1,.36,1)';
+      track.style.transform  = `translateX(${-(virtualIdx * STEP)}px)`;
+    }
+  }, { passive: true });
+
+  /* ── Button clicks ── */
+  if (btnPrev) btnPrev.addEventListener('click', e => { e.stopPropagation(); slideTo(-1); });
+  if (btnNext) btnNext.addEventListener('click', e => { e.stopPropagation(); slideTo(1); });
+
+  /* ── Click on track (desktop): pause ── */
   wrap.addEventListener('click', e => {
     if (e.target.closest('.carousel-btn-prev') || e.target.closest('.carousel-btn-next')) return;
     pause();
   });
-  if (btnPrev) btnPrev.addEventListener('click', e => { e.stopPropagation(); slideTo(currentIdx - 1); });
-  if (btnNext) btnNext.addEventListener('click', e => { e.stopPropagation(); slideTo(currentIdx + 1); });
+
+  /* ── Keyboard ── */
   document.addEventListener('keydown', e => {
     if (!paused) return;
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); slideTo(currentIdx - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); slideTo(currentIdx + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); slideTo(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); slideTo(1); }
   });
 }
 
